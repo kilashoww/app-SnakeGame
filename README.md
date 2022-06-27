@@ -1,6 +1,4 @@
-# serpent
-
-jeu du serpent
+# Jeu du serpent
 
 <h3>WAKATIME</h3>
 
