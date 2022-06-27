@@ -135,4 +135,4 @@ if(isnotBewtweenHorizontalWalls || isnotBewtweenVerticalWalls) {
 
 for (var i=0; i<rest; i++){
     if(snakeX===rest[i][0] && snake)
-}*/
+}
