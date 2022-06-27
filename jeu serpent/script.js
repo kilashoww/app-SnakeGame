@@ -6,7 +6,7 @@ window.onload = function () {
   var canvasHeight = 600;
   var blockSize = 30;
   var snakee;
-
+console.log("hello")
   init();
 
   function init() {
@@ -116,7 +116,6 @@ document.onkeydown = function handKeyDown(e) {
   }
 };
 
-/*
 var wallCollision = false;
 var snakeCollision = false;
 var head = this.body[0];
