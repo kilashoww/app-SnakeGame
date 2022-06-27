@@ -1,6 +1,6 @@
 # Jeu du serpent
 
-<h3>WAKATIME</h3>
+<h3>Temps de programmation</h3>
 
 <a href="https://wakatime.com/badge/github/kilashoww/serpent"><img src="https://wakatime.com/badge/github/kilashoww/serpent.svg" alt="wakatime"></a>
 
