@@ -19,7 +19,7 @@ window.onload = function ()
     ctx = canvas.getContext("2d");
     snakee = new Snake([[6, 4], [5, 4], [4, 4]], "right");
     refreshCanvas();
-  }
+  };
 
   function refreshCanvas() 
   {
@@ -28,14 +28,14 @@ window.onload = function ()
     snakee.draw();
     setTimeout(refreshCanvas, delay);
 
-  }
+  };
 
   function drawBlock(ctx, position) 
   {
     var x = position[0] * blockSize;
     var y = position[1] * blockSize;
     ctx.fillRect(x, y, blockSize, blockSize);
-  }
+  };
 
   function Snake(body, direction) 
   {
@@ -70,14 +70,13 @@ window.onload = function ()
         default:
           throw "invalid direction";
       }
-      nextPosition[0] += 1;
-      this.body.unshift(nextPosition);
-      this.body.pop();
     };
-    this.setDirection(newDirection);
+    
+    this.setDirection = function(newDirection)
     {
       var allowedDirection;
-      switch (this.direction) {
+      switch (this.direction) 
+      {
         case "left":
         case "right":
           allowedDirection = ["up", "down"];
@@ -89,33 +88,53 @@ window.onload = function ()
         default:
           throw "invalid direction";
       }
-      if (allowedDirection.indexOf(newDirection) > -1) {
+      if (allowedDirection.indexOf(newDirection) > -1) 
+      {
         this.newDirection = newDirection;
       }
+    };
+
+    document.onkeydown = function handKeyDown(e) 
+    {
+      var key = e.keycode;
+      var newDirection;
+      switch (key) 
+      {
+        case 37:
+          newDirection = "Left";
+          break;
+        case 38:
+          newDirection = "up";
+          break;
+        case 39:
+          newDirection = "Right";
+          break;
+        case 40:
+          newDirection = "Down";
+          break;
+        default:
+          return;
+      }
+      snakee.setDirection(newDirection);
+
     }
+  };
+};
+
+
+
+
+
+
+      /*nextPosition[0] += 1;
+      this.body.unshift(nextPosition);
+      this.body.pop();
+
+    
   }
 };
 
-document.onkeydown = function handKeyDown(e) {
-  var key = e.keyCode;
-  var newDirection;
-  switch (key) {
-    case 37:
-      newDirection = "Left";
-      break;
-    case 38:
-      newDirection = "up";
-      break;
-    case 39:
-      newDirection = "Right";
-      break;
-    case 40:
-      newDirection = "Down";
-      break;
-    default:
-      throw "invalid direction";
-  }
-};
+
 
 var wallCollision = false;
 var snakeCollision = false;
