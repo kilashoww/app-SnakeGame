@@ -6,7 +6,7 @@ window.onload = function () {
   var canvasHeight = 600;
   var blockSize = 30;
   var snakee;
-/*
+
   init();
 
   function init() {
