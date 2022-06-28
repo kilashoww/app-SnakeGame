@@ -6,4 +6,4 @@
 
 
 <h3>LICENCE</h3>
-Cette application est issue de la formation <alt href="https://apprendre-a-coder.com/" alt='site Apprendre à coder.com'>APPRENDRE A CODER.COM</alt>
+Cette application est issue de la formation <alt href="https://apprendre-a-coder.com/" alt='site Apprendre à coder.com'>APPRENDRE A CODER.COM</alt> avec quelques modifications.
