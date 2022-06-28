@@ -3,11 +3,13 @@ window.onload = function () {
   var canvasHeight = 600;
   var blockSize = 30;
   var ctx;
-  var delay = 150;
+  var delay = 200;
   var snakee;
   var applee;
   var widthInBlocks = canvasWidth / blockSize;
   var heightInBlocks = canvasHeight / blockSize;
+  var score;
+  var timeout;
 
   init();
 
@@ -15,7 +17,11 @@ window.onload = function () {
     var canvas = document.createElement("canvas");
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
-    canvas.style.border = "1px solid";
+    canvas.style.border = "30px solid gray";
+    canvas.style.margin = "50px auto";
+    canvas.style.display = "block";
+    canvas.style.backgroundColor = "rgba(232, 255, 11, 0.26)";
+
     document.body.appendChild(canvas);
     ctx = canvas.getContext("2d");
     snakee = new Snake(
@@ -27,29 +33,75 @@ window.onload = function () {
       "right"
     );
     applee = new Apple([10, 10]);
+    score = 0;
     refreshCanvas();
   }
   function refreshCanvas() {
+    snakee.advance();
     if (snakee.checkCollision()) {
       gameOver();
     } else {
       if (snakee.isEatingApple(applee)) {
+        score++;
         snakee.ateApple = true;
         do {
           applee.setNewPosition();
         } while (applee.isOnSnake(snakee));
       }
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-      snakee.advance();
+      drawScore();
       snakee.draw();
       applee.draw();
-      setTimeout(refreshCanvas, delay);
+      timeout = setTimeout(refreshCanvas, delay);
     }
   }
   function gameOver() {
     ctx.save();
-    ctx.fillText("Game Over", 5, 15);
-    ctx.fillText("Appuyez sur la touche espace pour rejouer", 5, 30);
+    ctx.font = "bold 40px sans-serif";
+    ctx.fillStyle = "orange";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 0.2;
+    var centreX = canvasWidth / 2;
+    var centreY = canvasHeight / 3;
+    ctx.fillText("Game Over", centreX, centreY);
+    ctx.strokeText("Game Over", centreX, centreY);
+    ctx.fillText(
+      "Appuyez sur la touche espace pour rejouer",
+      centreX,
+      centreY - 50
+    );
+    ctx.strokeText(
+      "Appuyez sur la touche espace pour rejouer",
+      centreX,
+      centreY - 50
+    );
+    ctx.restore;
+  }
+  function restart() {
+    snakee = new Snake(
+      [
+        [6, 4],
+        [5, 4],
+        [4, 4],
+      ],
+      "right"
+    );
+    applee = new Apple([10, 10]);
+    score = 0;
+    clearTimeout(timeout);
+    refreshCanvas();
+  }
+  function drawScore() {
+    ctx.save();
+    ctx.font = "bold 100px sans-serif";
+    ctx.fillStyle = "rgba(164,164,164,0.5)";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    var centreX = canvasWidth / 2;
+    var centreY = canvasHeight / 2;
+    ctx.fillText(score.toString(), centreX, centreY);
     ctx.restore;
   }
   function drawBlock(ctx, position) {
@@ -79,10 +131,10 @@ window.onload = function () {
           nextPosition[0] += 1;
           break;
         case "down":
-          nextPosition[1] -= 1;
+          nextPosition[1] += 1;
           break;
         case "up":
-          nextPosition[1] += 1;
+          nextPosition[1] -= 1;
           break;
         default:
           throw "invalid direction";
@@ -92,21 +144,21 @@ window.onload = function () {
       else this.ateApple = false;
     };
     this.setDirection = function (newDirection) {
-      var allowedDirection;
+      var allowedDirections;
       switch (this.direction) {
         case "left":
         case "right":
-          allowedDirection = ["up", "down"];
+          allowedDirections = ["up", "down"];
           break;
         case "down":
         case "up":
-          allowedDirection = ["left", "right"];
+          allowedDirections = ["left", "right"];
           break;
         default:
           throw "invalid direction";
       }
-      if (allowedDirection.indexOf(newDirection) > -1) {
-        this.newDirection = newDirection;
+      if (allowedDirections.indexOf(newDirection) > -1) {
+        this.direction = newDirection;
       }
     };
     this.checkCollision = function () {
@@ -137,7 +189,7 @@ window.onload = function () {
       var head = this.body[0];
       if (
         head[0] === appleToEat.position[0] &&
-        head[1] === appleToEat.position
+        head[1] === appleToEat.position[1]
       ) {
         return true;
       } else {
@@ -149,7 +201,7 @@ window.onload = function () {
     this.position = position;
     this.draw = function () {
       ctx.save();
-      ctx.fillStyle = "#83d475";
+      ctx.fillStyle = "rgba(19,255,0,1)";
       ctx.beginPath();
       var radius = blockSize / 2;
       var x = this.position[0] * blockSize + radius;
@@ -159,16 +211,17 @@ window.onload = function () {
       ctx.restore();
     };
     this.setNewPosition = function () {
-      var newX = Math.round(Math.random) * (widthInBlocks - 1);
-      var newY = Math.round(Math.random) * (heightInBlocks - 1);
-      thisPosition = [newX, NewY];
+      var newX = Math.round(Math.random() * (widthInBlocks - 1));
+      var newY = Math.round(Math.random() * (heightInBlocks - 1));
+      this.position = [newX, newY];
     };
+
     this.isOnSnake = function (snakeToCheck) {
       var isOnSnake = false;
       for (var i = 0; i < snakeToCheck.body.length; i++) {
         if (
-          thisPosition[0] === snakeToCheck.body[i][0] &&
-          thisPosition[1] === snakeToCheck.body[i][1]
+          this.position[0] === snakeToCheck.body[i][0] &&
+          this.position[1] === snakeToCheck.body[i][1]
         ) {
           isOnSnake = true;
         }
@@ -177,20 +230,23 @@ window.onload = function () {
     };
   }
   document.onkeydown = function handleKeyDown(e) {
-    var key = e.keycode;
+    var key = e.keyCode;
     var newDirection;
     switch (key) {
+      case 32:
+        restart();
+        return;
       case 37:
-        newDirection = "Left";
+        newDirection = "left";
         break;
       case 38:
         newDirection = "up";
         break;
       case 39:
-        newDirection = "Right";
+        newDirection = "right";
         break;
       case 40:
-        newDirection = "Down";
+        newDirection = "down";
         break;
       default:
         return;
