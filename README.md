@@ -32,7 +32,7 @@ This is a game from "apprendre à coder" learning course
 - Instagram - [@jcsanita](https://www.instagram.com/jcsanita)
 - Twitter - [@sanitajc](https://twitter.com/sanitajc)
 
-##LICENCE
+## LICENCE
 From learning course <alt href="https://apprendre-a-coder.com/" alt='site Apprendre à coder.com'>APPRENDRE A CODER.COM</alt> with some mods.
 
 ## Acknowledgments
@@ -41,6 +41,6 @@ You can support me by offering me a coffee or more on https://www.buymeacoffee.c
 So as you want: 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ I looove so much coffee :yum: :laughing:
 
 
-##Temps de programmation
+## Temps de programmation
 
 <a href="https://wakatime.com/badge/github/kilashoww/serpent"><img src="https://wakatime.com/badge/github/kilashoww/serpent.svg" alt="wakatime"></a>
