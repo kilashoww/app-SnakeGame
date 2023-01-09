@@ -22,7 +22,7 @@ This is a game from "apprendre à coder" learning course
 ### Links
 
 - Solution URL: https://github.com/kilashoww/app-SnakeGame
-- Live Site URL: https://kilashoww.github.io/serpent
+- Live Site URL: https://kilashoww.github.io/app-SnakeGame
 
 ## Author
 
