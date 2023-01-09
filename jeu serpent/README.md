@@ -17,7 +17,7 @@ This is a game from "apprendre à coder" learning course
 
 ### Screenshot
 
-![Snake game preview](./serpent/jeu serpent/Snake Game.png)
+![Snake game preview](https://github.com/kilashoww/serpent/blob/fc4f2c10c8f78fca46531bff3e859c611ef4a434/jeu%20serpent/Snake%20Game.png)
 
 ### Links
 
