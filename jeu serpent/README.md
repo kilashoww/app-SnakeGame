@@ -17,7 +17,7 @@ This is a game from "apprendre à coder" learning course
 
 ### Screenshot
 
-![Design preview for the Product preview card component coding challenge](./design/desktop-preview.jpg)
+![Snake game preview](./design/desktop-preview.jpg)
 
 ### Links
 
