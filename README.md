@@ -43,4 +43,4 @@ So as you want: 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ I looove so much coffee 
 
 ## Wakatime
 
-<a href="https://wakatime.com/badge/github/kilashoww/serpent"><img src="https://wakatime.com/badge/github/kilashoww/serpent.svg" alt="wakatime"></a>
+[![wakatime](https://wakatime.com/badge/github/kilashoww/app-SnakeGame.svg)](https://wakatime.com/badge/github/kilashoww/app-SnakeGame)
